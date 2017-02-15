@@ -1,0 +1,9 @@
+jasbdfkajd
+
+Number of even elements in the list: 3
+
+10
+20
+1230912
+-17
+20
