@@ -12,6 +12,7 @@ int main(){
 
     factorial = fact(x);
     cout << x << " factorial is: " << factorial << endl;
+    return 0;
 }
 
 int fact(int nin){
