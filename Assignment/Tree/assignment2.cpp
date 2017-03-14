@@ -22,6 +22,8 @@ void numEven(int& num, CPptr tree);
 void maxNode(CPptr& maxtree, CPptr tree);
 void totData(int& num, CPptr tree);
 void idDepth(int id, int& depth, bool& idfound, CPptr tree);
+void dataExist(int data, bool& datafound, CPptr tree);
+void numLess(int data, int& num, CPptr tree);
 
 int main(int argc, char* argv[]){
 	CPptr tree = NULL;
@@ -95,6 +97,28 @@ int main(int argc, char* argv[]){
 	}
 	else{
 		cout << "The depth is: " << amount << endl;
+	}
+
+	found = false;
+	cout << "What value do you want to know exists?" << endl;
+	cin >> datain;
+	dataExist(datain, found, tree);
+	if(found){
+		cout << datain << " exists in the tree" << endl;
+	}
+	else{
+		cout << datain << " doesn't exist in the tree" << endl;
+	}
+
+	amount = 0;
+	cout << "What value do you want to know exists?" << endl;
+	cin >> datain;
+	numLess(datain, amount, tree);
+	if(amount > 0){
+		cout << amount << " values are less than " << datain << " in the tree" << endl;
+	}
+	else{
+		cout << "No values are less than " << datain << endl;
 	}
 
 	printTree(tree);
@@ -179,6 +203,33 @@ void idDepth(int id, int& depth, bool& idfound, CPptr tree){
 					depth--;
 				}
 			}
+		}
+	}
+}
+
+void dataExist(int data, bool& datafound, CPptr tree){
+	if(tree != NULL){
+		if(data == tree->data){
+			datafound = true;
+		}
+		else {
+			dataExist(data, datafound, tree->left);
+			if(!datafound){
+				dataExist(data, datafound, tree->right);
+			}
+		}
+	}
+}
+
+void numLess(int data, int& num, CPptr tree){
+	if(tree != NULL){
+		if(data <= tree->data){
+			numLess(data, num, tree->left);
+		}
+		else {
+			num++;
+			numLess(data, num, tree->left);
+			numLess(data, num, tree->right);
 		}
 	}
 }
